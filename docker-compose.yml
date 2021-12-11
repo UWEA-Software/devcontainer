@@ -6,13 +6,13 @@ services:
     build:
       context: .
       dockerfile: node.Dockerfile
-    volumes:
-      - .:/workspace:cached
-      - ${SSH_SECRET_KEY_PATH}:/home/node/.ssh/id_rsa
-      - ${SSH_PUBLIC_KEY_PATH}:/home/node/.ssh/id_rsa.pub
+    command: sleep infinity
     env_file:
       - .env
-    command: sleep infinity
+    volumes:
+      - .:/workspace:cached
+      - ${SSH_SECRET_KEY_PATH}:/home/node/.ssh/id_rsa:cached
+      - ${SSH_PUBLIC_KEY_PATH}:/home/node/.ssh/id_rsa.pub:cached
     networks:
       - app
     user: "node"
@@ -21,13 +21,13 @@ services:
     build:
       context: .
       dockerfile: php.Dockerfile
-    volumes:
-      - .:/workspace:cached
-      - ${SSH_SECRET_KEY_PATH}:/home/developer/.ssh/id_rsa
-      - ${SSH_PUBLIC_KEY_PATH}:/home/developer/.ssh/id_rsa.pub
+    command: sleep infinity
     env_file:
       - .env
-    command: sleep infinity
+    volumes:
+      - .:/workspace:cached
+      - ${SSH_SECRET_KEY_PATH}:/home/developer/.ssh/id_rsa:cached
+      - ${SSH_PUBLIC_KEY_PATH}:/home/developer/.ssh/id_rsa.pub:cached
     networks:
       - app
 networks:
