@@ -1,0 +1,7 @@
+{
+  "name": "UWEA Dev Node",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "node",
+  "workspaceFolder": "/workspace",
+  "remoteUser": "node"
+}

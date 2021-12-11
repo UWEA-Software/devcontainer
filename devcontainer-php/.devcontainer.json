@@ -1,0 +1,7 @@
+{
+  "name": "UWEA Dev PHP",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "php",
+  "workspaceFolder": "/workspace",
+  "remoteUser": "developer"
+}

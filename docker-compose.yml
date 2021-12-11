@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  node:
+    container_name: ${COMPOSE_PROJECT_NAME}_node
+    build:
+      context: .
+      dockerfile: node.Dockerfile
+    volumes:
+      - .:/workspace:cached
+      - ${SSH_SECRET_KEY_PATH}:/home/node/.ssh/id_rsa
+      - ${SSH_PUBLIC_KEY_PATH}:/home/node/.ssh/id_rsa.pub
+    env_file:
+      - .env
+    command: sleep infinity
+    networks:
+      - app
+    user: "node"
+  php:
+    container_name: ${COMPOSE_PROJECT_NAME}_php
+    build:
+      context: .
+      dockerfile: php.Dockerfile
+    volumes:
+      - .:/workspace:cached
+      - ${SSH_SECRET_KEY_PATH}:/home/developer/.ssh/id_rsa
+      - ${SSH_PUBLIC_KEY_PATH}:/home/developer/.ssh/id_rsa.pub
+    env_file:
+      - .env
+    command: sleep infinity
+    networks:
+      - app
+networks:
+  app:
+    driver: bridge
