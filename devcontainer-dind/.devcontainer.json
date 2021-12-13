@@ -1,0 +1,7 @@
+{
+  "name": "UWEA Dev DIND",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "dind",
+  "workspaceFolder": "/workspace",
+  "remoteUser": "developer"
+}

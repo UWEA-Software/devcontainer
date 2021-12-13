@@ -5,7 +5,7 @@ services:
     container_name: ${COMPOSE_PROJECT_NAME}_node
     build:
       context: .
-      dockerfile: node.Dockerfile
+      dockerfile: docker/node.Dockerfile
     command: sleep infinity
     env_file:
       - .env
@@ -20,12 +20,28 @@ services:
     container_name: ${COMPOSE_PROJECT_NAME}_php
     build:
       context: .
-      dockerfile: php.Dockerfile
+      dockerfile: docker/php.Dockerfile
     command: sleep infinity
     env_file:
       - .env
     volumes:
       - .:/workspace:cached
+      - ${SSH_SECRET_KEY_PATH}:/home/developer/.ssh/id_rsa:cached
+      - ${SSH_PUBLIC_KEY_PATH}:/home/developer/.ssh/id_rsa.pub:cached
+    networks:
+      - app
+  dind:
+    container_name: ${COMPOSE_PROJECT_NAME}_dind
+    build:
+      context: .
+      dockerfile: docker/dind.Dockerfile
+    command: sleep infinity
+    privileged: true
+    env_file:
+      - .env
+    volumes:
+      - .:/workspace:cached
+      - /var/run/docker.sock:/var/run/docker.sock
       - ${SSH_SECRET_KEY_PATH}:/home/developer/.ssh/id_rsa:cached
       - ${SSH_PUBLIC_KEY_PATH}:/home/developer/.ssh/id_rsa.pub:cached
     networks:
