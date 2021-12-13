@@ -17,7 +17,7 @@ This is a base devcontainer toolbox for setting up development environment for a
     cp .env.local .env
     ```
 
-- Open either `devcontainer-php` or `devcontainer-node` directory so that your IDE/Editor picks up the `.devcontainer.json`
+- Open either of the `devcontainer-*` directories so that your IDE/Editor picks up the `.devcontainer.json`
   - Continue in your editor to start the containers
 - Open a terminal within the devcontainer
 - Run the init command
